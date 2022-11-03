@@ -10,7 +10,7 @@ def send_welcome(message):
 def echo_all(message):
     bot.reply_to(message,'1 хочу продать usd за рубли\n 2 хочу купить usd за рубли')
 
-@bot.message_handler(message=['1'])
+@bot.message_handler(message=[1])
 def echo_all(message):
 	bot.reply_to(message, "курс на сегодня 1 usd = 60 rub")
 
