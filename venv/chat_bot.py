@@ -8,7 +8,7 @@ def send_welcome(message):
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
-    bot.reply_to('1 хочу продать usd за рубли\n 2 хочу купить usd за рубли')
+    bot.reply_to(message,'1 хочу продать usd за рубли\n 2 хочу купить usd за рубли')
 
 @bot.message_handler(commands=['1'])
 def send_welcome(message):
