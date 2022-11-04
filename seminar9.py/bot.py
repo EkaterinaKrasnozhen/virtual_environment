@@ -17,11 +17,6 @@ def get_course_usd(message):
 
 
 def multi_course(message):
-    while course_usd_rub  == 0:
-        try:
-            course_usd_rub = int(message.text)
-        except Exception:
-            bot.send_message(message.from_user.id, 'Цифрами, пожалуйста')
     bot.send_message(message.from_user.id, 10000 * course_usd_rub)
 
 
