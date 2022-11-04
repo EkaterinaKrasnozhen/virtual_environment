@@ -6,14 +6,24 @@ bot = telebot.TeleBot('5483567139:AAFOLwOJcEr_oN7xhAz82MybfR-w4RIJ--A')
 #        bot.send_message(message.from_user.id,'Привет, хотите совершить выгодный обмен?\n 1 - Купить usd за rub\n 2 - Продать usd за rub')
 #        bot.register_next_step_handler(message, get_course_usd)
 
-course_usd_rub = ''
-course_rub_usd = ''
+course_usd_rub = 0
+course_rub_usd = 0
 
 @bot.message_handler(content_types=['text'])
 def get_course_usd(message):
     if message.text == '/u':
         bot.send_message(message.from_user.id,'Какой сегодня курс обмена usd на rub?')
         bot.register_next_step_handler(message,set_course_usd)
+
+
+def multi_course(message):
+    while course_usd_rub  == 0:
+        try:
+            course_usd_rub = int(message.text)
+        except Exception:
+            bot.send_message(message.from_user.id, 'Цифрами, пожалуйста')
+        bot.send_message(message.from_user.id, 10000 * course_usd_rub)
+
 
 def set_course_usd(message):
     course_usd_rub = message.text
@@ -30,4 +40,3 @@ def set_course_rub(message):
 
 bot.polling(none_stop=True, interval=0)
 
-#print(course_usd_rub)
