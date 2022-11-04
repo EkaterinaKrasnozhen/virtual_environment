@@ -22,7 +22,7 @@ def multi_course(message):
             course_usd_rub = int(message.text)
         except Exception:
             bot.send_message(message.from_user.id, 'Цифрами, пожалуйста')
-        bot.send_message(message.from_user.id, 10000 * course_usd_rub)
+    bot.send_message(message.from_user.id, 10000 * course_usd_rub)
 
 
 def set_course_usd(message):
