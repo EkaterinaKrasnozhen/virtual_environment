@@ -12,7 +12,7 @@ course_rub_usd = 62
 @bot.message_handler(content_types=['text'])
 def get_course_usd(message):
     if message.text == '/u':
-        bot.send_message('Какой сегодня курс обмена usd на rub?')
+        bot.send_message(message.from_user.id,'Какой сегодня курс обмена usd на rub?')
         bot.register_next_step_handler(message,set_course_usd)
 
 def set_course_usd(message):
