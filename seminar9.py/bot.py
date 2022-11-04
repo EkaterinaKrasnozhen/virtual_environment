@@ -30,4 +30,4 @@ def set_course_rub(message):
 
 bot.polling(none_stop=True, interval=0)
 
-print(course_usd_rub)
+#print(course_usd_rub)
