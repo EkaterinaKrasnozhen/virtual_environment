@@ -19,6 +19,7 @@ def get_course_usd(message):
 def multi_course(message):
     course_usd_rub = message.text
     bot.send_message(message.from_user.id, 10000 * int(course_usd_rub))
+    
 
 
 def set_course_usd(message):
