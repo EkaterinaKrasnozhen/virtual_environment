@@ -1,3 +1,6 @@
+# Написать тесты к функциям из ранее выполненных заданий.
+
+
 from utils import sum_float
 from utils import multi_N
 import pytest
