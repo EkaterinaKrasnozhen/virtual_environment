@@ -16,8 +16,8 @@ from utils import divider
 #         divider(10,'b')
         
 
-@pytest.mark.parametrize('expected_exeption,division_n, devider', [(ZeroDivisionError, 100, 0),
+@pytest.mark.parametrize('expected_exeption, division_n, devider', [(ZeroDivisionError, 100, 0),
                                                                  (TypeError, 100, 'b')])
-def test_division_with_error(expected_exeption,division_n, devider):
+def test_division_with_error(expected_exeption, division_n, devider):
     with pytest.raises(expected_exeption):
         divider(division_n, devider)
