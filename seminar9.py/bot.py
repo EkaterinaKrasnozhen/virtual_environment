@@ -20,8 +20,7 @@ def start_message(message):
 #скрытая от клиента команда, чтобы задать курс
 @bot.message_handler(commands=['r'])
 def get_rub_1(message):
-    msg1 = bot.send_message(
-        message.chat.id, 'Привет, какой сегодня курс продажи USD за RUB?')
+    msg1 = bot.send_message(message.chat.id, 'Привет, какой сегодня курс продажи USD за RUB?')
     id_1 = 1
     bot.register_next_step_handler(msg1, log_course, id_1)
 
@@ -29,8 +28,7 @@ def get_rub_1(message):
 #скрытая от клиента команда, чтобы задать курс
 @bot.message_handler(commands=['u'])
 def get_us_1(message):
-    msg = bot.send_message(
-        message.chat.id, 'Привет, какой сегодня курс покупки USD за RUB?')
+    msg = bot.send_message(message.chat.id, 'Привет, какой сегодня курс покупки USD за RUB?')
     id_2 = 2
     bot.register_next_step_handler(msg, log_course, id_2)
 
@@ -123,16 +121,13 @@ def get_course_today_rub():
 @bot.message_handler(content_types=['text'])
 def message_reply(message):
     if message.text == 'Купить USD за RUB':
-        bot.send_message(
-            message.chat.id, f'курс сегодня = {get_course_today_us()}')
+        bot.send_message(message.chat.id, f'курс сегодня = {get_course_today_us()}')
         return
     if message.text == 'Продать USD за RUB':
-        bot.send_message(
-            message.chat.id, f'курс сегодня = {get_course_today_rub()}')
+        bot.send_message(message.chat.id, f'курс сегодня = {get_course_today_rub()}')
         return
     else:
-        bot.send_message(
-            message.chat.id, 'Я тебя не понимаю, нажми /start и выбери нужную кнопку меню.')
+        bot.send_message(message.chat.id, 'Я тебя не понимаю, нажми /start и выбери нужную кнопку меню.')
 
 
 
