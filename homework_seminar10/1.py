@@ -37,7 +37,7 @@ def cacher(func):
     return wrapper
 
 
-@logger
+@logger_timer
 @cacher
 def seq(n):
     li = [x for x in range(0,n)]
