@@ -9,7 +9,7 @@ from functools import wraps
 import time
 import datetime
 
-def logger(func):
+def logger_timer(func):
     @wraps(func) 
     def wrapper(*args, **kwargs):
         log_msg = f'start {time.time_ns()}\t'
