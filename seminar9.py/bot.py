@@ -16,36 +16,64 @@ def start_message(message):
                      \n Для выхода в главное меню - нажми \n/start""", reply_markup=keyboard1)
 
 
-@bot.message_handler(commands=['u'])
-def get_us(message):
-    msg = bot.send_message(message.chat.id, 'Привет, какой сегодня курс USD/RUB?')
-    bot.register_next_step_handler(msg, log_course_us)
+# @bot.message_handler(commands=['u'])
+# def get_us(message):
+#     msg = bot.send_message(message.chat.id, 'Привет, какой сегодня курс USD/RUB?')
+#     bot.register_next_step_handler(msg, log_course_us)
     
 
+# @bot.message_handler(commands=['r'])
+# def get_rub(message):
+#     msg1 = bot.send_message(message.chat.id, 'Привет, какой сегодня курс RUB/USD?')
+#     bot.register_next_step_handler(msg1, log_course_rub)
+    
+
+# def log_course_us(message):
+#     course_us_rub = {}
+#     to_day = f'{datetime.datetime.now():%d/%m/%y %H.%M.%S}'
+#     course_us_rub[to_day] = {message.text}
+#     with open('cours_us.cvs', 'a', encoding='utf-8') as c:
+#         c.write(f'{course_us_rub}\n')
+#     with open('cours_today_us.cvs', 'w', encoding='utf-8') as c:
+#         c.write(f'{course_us_rub}\n')
+        
+        
+# def log_course_rub(message):
+#     course_rub_us = {}
+#     to_day = f'{datetime.datetime.now():%d/%m/%y %H.%M.%S}'
+#     course_rub_us[to_day] = {message.text}
+#     with open('cours_rub.cvs', 'a', encoding='utf-8') as c:
+#         c.write(f'{course_rub_us}\n')
+#     with open('cours_today_rub.cvs', 'w', encoding='utf-8') as c:
+#         c.write(f'{course_rub_us}\n')
+        
 @bot.message_handler(commands=['r'])
-def get_rub(message):
-    msg1 = bot.send_message(message.chat.id, 'Привет, какой сегодня курс RUB/USD?')
-    bot.register_next_step_handler(msg1, log_course_rub)
-    
+def get_rub_1(message):
+    msg1 = bot.send_message(message.chat.id, 'Привет, какой сегодня курс продажи USD за RUB?')
+    id_1 = 1
+    bot.register_next_step_handler(msg1, log_course, id_1)
 
-def log_course_us(message):
-    course_us_rub = {}
+@bot.message_handler(commands=['u'])
+def get_us_1(message):
+    msg = bot.send_message(message.chat.id, 'Привет, какой сегодня курс покупки USD за RUB?')
+    id_2 = 2
+    bot.register_next_step_handler(msg, log_course, id_2)
+
+
+def log_course(message, num):
+    course = {}
     to_day = f'{datetime.datetime.now():%d/%m/%y %H.%M.%S}'
-    course_us_rub[to_day] = {message.text}
-    with open('cours_us.cvs', 'a', encoding='utf-8') as c:
-        c.write(f'{course_us_rub}\n')
-    with open('cours_today_us.cvs', 'w', encoding='utf-8') as c:
-        c.write(f'{course_us_rub}\n')
-        
-        
-def log_course_rub(message):
-    course_rub_us = {}
-    to_day = f'{datetime.datetime.now():%d/%m/%y %H.%M.%S}'
-    course_rub_us[to_day] = {message.text}
-    with open('cours_rub.cvs', 'a', encoding='utf-8') as c:
-        c.write(f'{course_rub_us}\n')
-    with open('cours_today_rub.cvs', 'w', encoding='utf-8') as c:
-        c.write(f'{course_rub_us}\n')
+    course[to_day] = {message.text}
+    if num == 2:
+        with open('cours_us.cvs', 'a', encoding='utf-8') as c:
+            c.write(f'{course}\n')
+        with open('cours_today_us.cvs', 'w', encoding='utf-8') as c:
+            c.write(f'{course}\n')
+    elif num == 1:
+        with open('cours_rub.cvs', 'a', encoding='utf-8') as c:
+            c.write(f'{course}\n')
+        with open('cours_today_rub.cvs', 'w', encoding='utf-8') as c:
+            c.write(f'{course}\n')
         
 
 def get_course_today_us():
