@@ -1,10 +1,14 @@
 import telebot
-from telebot import types
 import datetime
-import time
+
+import os
+from dotenv import load_dotenv # pip install python-dotenv - безопасно ипсользовать свои пароли и токены
+load_dotenv()
+token = os.getenv('token_tg')
 
 #спрятать коин
-bot = telebot.TeleBot('5483567139:AAFOLwOJcEr_oN7xhAz82MybfR-w4RIJ--A')
+bot = telebot.TeleBot(f'{token}')
+
 
 #создаем кнопки
 keyboard1 = telebot.types.ReplyKeyboardMarkup(True, True)
@@ -14,13 +18,15 @@ keyboard1.row('Купить USD за RUB', 'Продать USD за RUB')
 @bot.message_handler(commands=['start'])
 def start_message(message):
     bot.send_message(message.chat.id, """Привет, нажми нужную кнопку.
-                     \n Для выхода в главное меню - нажми \n/start""", reply_markup=keyboard1)
+                     \n Для выхода в главное меню - нажми 
+                     \n/start""", reply_markup=keyboard1)
 
 
 #скрытая от клиента команда, чтобы задать курс
 @bot.message_handler(commands=['r'])
 def get_rub_1(message):
-    msg1 = bot.send_message(message.chat.id, 'Привет, какой сегодня курс продажи USD за RUB?')
+    msg1 = bot.send_message(message.chat.id, """Привет, какой 
+                            сегодня курс продажи USD за RUB?""")
     id_1 = 1
     bot.register_next_step_handler(msg1, log_course, id_1)
 
@@ -77,44 +83,6 @@ def get_course_today_rub():
         dict1[key] = value
         data.close()
         return value
-    
-    
-# def get_course_today(id_n):
-#     dict1 = dict()
-#     if id_n == 1:
-#         data = open('cours_today_rub.cvs', 'r', encoding='utf-8')
-#         file = data.read().replace("{", "").replace("}", "").replace("'", "").split("\n")[:-1]
-#         data.close
-#         for item in file:
-#              key = item.split(':')[0]
-#              value = item.split(':')[1]
-#              dict1[key] = value
-#              data.close()
-#              return value
-#     elif id_n == 2:
-#         data = open('cours_today_us.cvs', 'r', encoding='utf-8')
-#         file = data.read().replace("{", "").replace("}", "").replace("'", "").split("\n")[:-1]
-#         data.close
-#         for item in file:
-#              key = item.split(':')[0]
-#              value = item.split(':')[1]
-#              dict1[key] = value
-#              data.close()
-#              return value
-        
-# @bot.message_handler(content_types=['text'])
-# def message_reply_1(message):
-#     if message.text == 'Купить USD за RUB':
-#         bot.send_message(
-#             message.chat.id, f'курс сегодня = {get_course_today_us()}')
-#         return
-#     if message.text == 'Продать USD за RUB':
-#         bot.send_message(
-#             message.chat.id, f'курс сегодня = {get_course_today_rub()}')
-#         return
-#     else:
-#         bot.send_message(
-#             message.chat.id, 'Я тебя не понимаю, нажми /start и выбери нужную кнопку меню.')
 
 
 #выводим курс на экран, в зависимости от usd или rub
@@ -127,23 +95,8 @@ def message_reply(message):
         bot.send_message(message.chat.id, f'курс сегодня = {get_course_today_rub()}')
         return
     else:
-        bot.send_message(message.chat.id, 'Я тебя не понимаю, нажми /start и выбери нужную кнопку меню.')
-
-
-
-# @bot.message_handler(content_types=['text'])
-# def send_text(message):
-#     if message.text.lower() == 'привет':
-#         bot.send_message(message.chat.id, 'Приветик')
-#     elif message.text.lower() == 'пока':
-#         bot.send_message(message.chat.id, 'Прощай, создатель')
-#     elif message.text.lower() == 'спасибо':
-#         bot.send_sticker(message.chat.id, 'CAADAgADZgkAAnlc4gmfCor5YbYYRAI')
-
-
-# @bot.message_handler(content_types=['sticker'])
-# def sticker_id(message):
-#     print(message)
+        bot.send_message(message.chat.id, """Я тебя не понимаю, 
+                         нажми /start и выбери нужную кнопку меню.""")
 
 
 bot.polling(none_stop=True, interval=0)
