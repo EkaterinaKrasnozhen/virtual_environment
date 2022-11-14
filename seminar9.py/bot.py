@@ -25,8 +25,7 @@ def start_message(message):
 #скрытая от клиента команда, чтобы задать курс
 @bot.message_handler(commands=['r'])
 def get_rub_1(message):
-    msg1 = bot.send_message(message.chat.id, """Привет, какой 
-                            сегодня курс продажи USD за RUB?""")
+    msg1 = bot.send_message(message.chat.id, 'Привет, какой сегодня курс продажи USD за RUB?')
     id_1 = 1
     bot.register_next_step_handler(msg1, log_course, id_1)
 
