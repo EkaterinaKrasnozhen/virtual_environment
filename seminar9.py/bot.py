@@ -31,7 +31,7 @@ def get_rub_1(message):
     bot.register_next_step_handler(msg1, log_course, id_1)
 
 
-#скрытая от клиента команда, чтобы задать курс
+#скрытая от клиента команда, чтобы задать курс 
 @bot.message_handler(commands=['u'])
 def get_us_1(message):
     msg = bot.send_message(message.chat.id, 'Привет, какой сегодня курс покупки USD за RUB?')
