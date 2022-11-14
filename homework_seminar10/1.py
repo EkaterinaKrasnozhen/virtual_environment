@@ -12,11 +12,12 @@ import time
 def logger_timer(func):
     @wraps(func) 
     def wrapper(*args, **kwargs):
-        log_msg = f'start {time.time_ns()}\t'
-        log_msg += f'finish {time.time_ns()}'
-        log_msg += f'{func.__name__}\t'
+        log_msg = f'{func.__name__}\t'
         log_msg += f"параметры: {', '.join(map(str, args))}\t"
+        start = time.time_ns()
         res = func(*args, **kwargs)
+        finish = time.time_ns()
+        log_msg += f' время выполнения ns: {float(finish) - float(start)}\t'
         log_msg += f'результат: {res}\n'
         print(log_msg)
         with open('seq_n.log', 'a', encoding='utf-8') as fp:

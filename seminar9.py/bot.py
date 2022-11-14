@@ -6,7 +6,7 @@ from dotenv import load_dotenv # pip install python-dotenv - безопасно 
 load_dotenv()
 token = os.getenv('token_tg')
 
-#спрятать коин
+#спрятать токен
 bot = telebot.TeleBot(f'{token}')
 
 
@@ -58,29 +58,25 @@ def log_course(message, num):
 
 #получаем актуальный курс для пользователя
 def get_course_today_us():
-    dict1 = dict()
     data = open('cours_today_us.cvs', 'r', encoding='utf-8')
     file = data.read().replace("{", "").replace(
         "}", "").replace("'", "").split("\n")[:-1]
-    data.close
+    data.close()
     for item in file:
         key = item.split(':')[0]
         value = item.split(':')[1]
-        dict1[key] = value
         data.close()
         return value
 
 
 def get_course_today_rub():
-    dict1 = dict()
     data = open('cours_today_rub.cvs', 'r', encoding='utf-8')
     file = data.read().replace("{", "").replace(
         "}", "").replace("'", "").split("\n")[:-1]
-    data.close
+    data.close()
     for item in file:
         key = item.split(':')[0]
         value = item.split(':')[1]
-        dict1[key] = value
         data.close()
         return value
 
