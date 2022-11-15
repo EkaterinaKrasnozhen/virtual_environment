@@ -1,8 +1,17 @@
+#стандартные(встроенные) библиотеки ставим вверху
+#import time
+#import random
+
+#потом импорты из библиотек, которые установили(сторонние)
 from sympy import symbols, sin, cos
 from sympy.plotting import plot
 from scipy.optimize import fsolve
 import matplotlib.pyplot as plt
 import numpy
+
+#в последнюю очередь импорт своих пакетов(сами написали)
+
+
 #f(x) = -12x^4*sin(cos(x))-18x^3+5x^2+10x-30
 # График функции при помощи библиотеки matplotlib
 
