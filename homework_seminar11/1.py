@@ -10,7 +10,7 @@ import numpy
 # График функции при помощи библиотеки matplotlib
 
 x = [x for x in range(-30, 30)]
-y = [(-12 * x ** 4 * sin(cos(x)) - 18 * x ** 3 + 5 * x ** 2 + 10 * x - 30)
+y = [(-12 * x ** 4 * sin(cos(x)) - 18 * x ** 3 + 5 * x ** 2 + 10 * x - 30)  # type: ignore
      for x in range(-30, 30)]
 plt.plot(x, y)
 plt.grid()

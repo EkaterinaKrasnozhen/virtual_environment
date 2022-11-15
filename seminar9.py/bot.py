@@ -2,6 +2,8 @@ import telebot
 import datetime
 import os
 from dotenv import load_dotenv # pip install python-dotenv - безопасно ипсользовать свои пароли и токены
+import emoji
+
 load_dotenv()
 token = os.getenv('token_tg')
 
@@ -86,6 +88,13 @@ def get_sum_us(message, id_num):
     msg = bot.send_message(message.chat.id, 'Какая сумма?')
     bot.register_next_step_handler(msg, calc, id_num)
         
+
+@bot.message_handler(commands=['/yes'])
+def get_requisites(message):
+    bot.send_message(message.chat.id, 'номер карты для копирования:')
+    bot.send_message(message.chat.id,'233354635432')
+    bot.send_message(message.chat.id, f'Как отправишь - сообщи хозяину \N{winking face}')
+    
     
 #выводим курс на экран, в зависимости от usd или rub
 @bot.message_handler(content_types=['text'])
@@ -108,6 +117,7 @@ def message_reply(message):
                          \n нажми /start и выбери нужную кнопку меню.""")
 
 
+#калькулятор
 @bot.message_handler(content_types=['text'])    
 def calc(message, id_n):
     sum = message.text
@@ -117,14 +127,16 @@ def calc(message, id_n):
     else:    
         if id_n == 1:
             course1 = get_course_today_us()
-            
             res = float(sum) * float(course1)  # type: ignore
             bot.send_message(message.chat.id, f'Купить {sum} USD по {course1} = {res} RUB')
+            msg1 = bot.send_message(message.chat.id, f'Показать реквизиты для перевода? Жми /yes')
+            bot.register_next_step_handler(msg1, get_requisites)
         if id_n == 2:
             course2 = get_course_today_rub()
             res = int(sum) * float(course2)  # type: ignore
             bot.send_message(message.chat.id, f'Продать {sum} USD по {course2} = {res} RUB')
+            msg2 = bot.send_message(message.chat.id, f'Показать реквизиты для перевода? Жми /yes')
+            bot.register_next_step_handler(msg2, get_requisites)
         
-
 
 bot.polling(none_stop=True, interval=0)

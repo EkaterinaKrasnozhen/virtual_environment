@@ -1,8 +1,8 @@
 # f(x) = 5x^2+10x-30
 
 
-from sympy import *
 import matplotlib.pyplot as plt
+from sympy import *
 
 print('1. Определить корни')
 x = Symbol('x') #symbols(x, y, z)
