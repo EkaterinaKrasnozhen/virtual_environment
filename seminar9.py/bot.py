@@ -118,11 +118,11 @@ def calc(message, id_n):
         if id_n == 1:
             course1 = get_course_today_us()
             
-            res = float(sum) * float(course1)
+            res = float(sum) * float(course1)  # type: ignore
             bot.send_message(message.chat.id, f'Купить {sum} USD по {course1} = {res} RUB')
         if id_n == 2:
             course2 = get_course_today_rub()
-            res = int(sum) * float(course2)
+            res = int(sum) * float(course2)  # type: ignore
             bot.send_message(message.chat.id, f'Продать {sum} USD по {course2} = {res} RUB')
         
 

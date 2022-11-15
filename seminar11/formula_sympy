@@ -1,0 +1,53 @@
+# f(x) = 5x^2+10x-30
+
+
+from sympy import *
+import matplotlib.pyplot as plt
+
+print('1. Определить корни')
+x = Symbol('x') #symbols(x, y, z)
+func = 5*x**2+10*x-30
+y = solve(func)
+x1 = round(float(y[0]), 2)
+x2 = round(float(y[1]), 2)
+print(x1, x2)
+#print(y) #sqrt будет, jupyter sqrt = Vкорень
+
+
+print('2. Найти интервалы, на которых функция возрастает')
+fd = diff(func)
+print(solve(0 < fd))
+
+
+print('3. Найти интервалы, на которых функция возрастает')
+fd = diff(func)
+print(solve(0 > fd))
+
+
+# print('4. построить график')
+# list_y = []
+# for i in range(-5, 6):
+#     x = i
+#     y = 5*x**2+10*x-30
+#     list_y.append(y)
+# print(list_y)
+# plt.plot(range(-5, 6), [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+# plt.plot(range(-5, 6), list_y)
+# plt.grid() #выведет график с сеткой
+# plt.show()
+
+
+# print('5. Вычислить вершину')
+# corni = solve(fd)
+# top = corni[0]
+# x = top
+# y = 5*x**2+10*x-30
+# print(top, y)
+
+
+print('6. Оперделить промежутки, на котором f > 0')
+print(solve(0 < func)) 
+
+
+print('6. Оперделить промежутки, на котором f < 0')
+print(solve(0 > func)) 
