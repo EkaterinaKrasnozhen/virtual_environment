@@ -58,4 +58,4 @@ yen_val = float(yen_val)
 cny = 100
 rub = cny * yen_val/yen_nom
 print(round(rub, 2))
-print(f'CN\u00A5{cny} = {round(rub, 2)}\u20BD')
+print(f'CN\u00A5{cny} = {round(rub, 2)}\u20BD') #юникод
