@@ -2,6 +2,7 @@
 # pip install requests
 #selenium.dev спец драйверы для браузеров, тестирует сайт как пользователь
 # nic.ru кто есть кто по сайтам, доменам
+# beautiful soup разбор xml/html страниц лучше с lxml
 
 
 # ctrl+d  = копия строки
@@ -49,7 +50,7 @@ yen_nom = cny_find.findtext('Nominal')
 yen_char = cny_find.findtext('CharCode')
 yen_val = cny_find.findtext('Value')
 print(yen_name, yen_char, yen_nom, yen_val)
-yen_nom = int(yen_nom)
+yen_nom = int(yen_nom)  # type: ignore
 yen_val = yen_val.replace(',', '.')
 print(yen_val)
 yen_val = float(yen_val)
@@ -57,3 +58,4 @@ yen_val = float(yen_val)
 cny = 100
 rub = cny * yen_val/yen_nom
 print(round(rub, 2))
+print(f'CN\u00A5{cny} = {round(rub, 2)}\u20BD')
