@@ -10,7 +10,9 @@
 import xml.etree.ElementTree as ET
 import requests
 url = 'http://www.cbr.ru/scripts/XML_daily.asp'
-# r = requests.get(url)
+# на дату 'http://www.cbr.ru/scripts/XML_daily.asp?date_reg=14.12.2014'
+params = {'date_reg' : '14.12.2014'}
+# r = requests.get(url) 
 # print(r.status_code)
 # if r.status_code == 200: #if r.ok is True или r.ok:  и так True передает
 #     print(r.headers)
@@ -21,7 +23,7 @@ url = 'http://www.cbr.ru/scripts/XML_daily.asp'
     
 responce = requests.get(url)
 new_session = requests.Session()
-responce = new_session.get(url)
+responce = new_session.get(url) # .get(url, params=params)
 if responce.status_code == 200: #if r.ok is True или r.ok:  и так True передает
     crb_xml = responce.text
     cur_root = ET.fromstring(crb_xml) # ET.parse('file.xml') по аналогии можно открыть в файл
